@@ -1,0 +1,40 @@
+{% extends 'pagina_base.html' %}
+{% load static %}
+
+{% block title%}
+    <title>Pedidos</title>
+{% endblock %}
+
+{% block content %}
+
+        <div class="container-fluid">
+                <div style="padding:60px" class="col-md">
+                    <div class="row">
+                            {% for message in messages %}
+                                <div class="alert {{message.tags}}">
+                                    {{message}}
+                                </div>
+                            {% endfor %}
+                        {% for pedido in pedidos %}
+                            <div class="col-md-3" style="margin-top: 20px;">
+                                <div class="card" style="background-color: #D6D6D6; border:none;">
+                                    <div style="padding:10px">
+                                        <span clas="span-bold">{{pedido.pet.nome}}</span>
+                                    </div>
+                                    <img class="card-img-top" src="{{pedido.pet.foto.url}}">
+                                    <div class="card-body">
+                                        <h1 class="card-title">{{pedido.adotante}}</h1>
+                                        <span class="span-bold2">Email do interessado:</span>
+                                        <p class="fw-bolder fs-5">{{pedido.email_adotante}}</p>
+                                        <span class="span-bold2">Data do Pedido:</span>
+                                        <p>{{pedido.data_solicitacao}}</p>
+                                        <a href="{% url 'processar_pedido' pedido.id %}?status=Aprovado" class="btn btn-success btn-lg">Aprovar</a>
+                                        <a href="{% url 'processar_pedido' pedido.id %}?status=Recusado" class="btn btn-danger btn-lg">Recusar</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}  
+                    </div>
+                </div>
+            </div>
+{% endblock %}

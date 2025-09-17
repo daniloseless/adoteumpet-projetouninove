@@ -1,0 +1,37 @@
+{% extends 'pagina_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Divulgar Pets</title>
+{% endblock%}
+
+{% block css_personalizado %} 
+<link rel="stylesheet" href="{% static 'css/cadastrar_pet.css' %}">
+{% endblock %}
+
+{% block content %}
+                <!--Proteger-->
+                <div class="col-md">
+                    <div class="wrapper">
+                        <div class="box">
+                            <div class="header-box">
+                                <h3 class="font-vinho">Quero divulgar um pet para Adoção</h3>
+                                <hr>
+                            </div>
+                            <div class="body-box">
+                                <form action="{% url 'cadastrar_pet' %}" method="post" enctype='multipart/form-data'>
+                                    {% csrf_token %}
+                                        {% for message in messages %}
+                                            <div class="alert {{message.tags}}">
+                                                {{message}}
+                                            </div>
+                                        {% endfor %}
+
+                                    {{form.as_p}}
+                                    <input type="submit" value="Cadastrar" class="btn btn-outline-primary w-100 mt-2">
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+{% endblock %}
