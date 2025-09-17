@@ -18,7 +18,7 @@ AdoteUmPet é totalmente integrado ao Django Admin, uma poderosa ferramenta que 
 
 ## Começando
 
-1. Clone o repositório: `git clone https://github.com/seu-usuario/PyPet.git`
+1. Clone o repositório: `git clone https://github.com/daniloseless/adoteumpet-projetouninove.git`
 2. Instale as dependências: `pip install -r requirements.txt`
 3. Realize as migrações do Django: `python manage.py migrate`
 4. Execute o servidor: `python manage.py runserver`
