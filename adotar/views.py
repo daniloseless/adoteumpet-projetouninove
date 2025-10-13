@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404
 from divulgar.models import *
 from adotar.models import *
 from django.contrib.auth.models import User
@@ -7,7 +7,6 @@ from django.contrib import messages
 from django.contrib.messages import constants
 from datetime import datetime
 
-# Create your views here.
 @login_required
 def listar_pets(request):
     if request.method == 'GET':
@@ -50,5 +49,38 @@ def solicitar_adocao(request, id):
         messages.add_message(request, constants.SUCCESS, 'Pedido realizado com sucesso!')
         return redirect('/adotar')
 
+@login_required
+def meus_pedidos(request):
+    if request.method == "GET":
+        # Filtra os pedidos de adoção onde o 'adotante' é o usuário logado
+        pedidos = Pedido_Adocao.objects.filter(adotante=request.user)
+        return render(request, 'meus_pedidos.html', {'pedidos': pedidos})
 
-        
+@login_required
+def cancelar_pedido(request, id):
+    pedido = get_object_or_404(Pedido_Adocao, id=id)
+
+    if not pedido.adotante == request.user:
+        messages.add_message(request, constants.ERROR, 'Este pedido não é seu!')
+        return redirect('/adotar/meus_pedidos/')
+
+    if not pedido.status_pedido == 'AG':
+        messages.add_message(request, constants.WARNING, 'Este pedido já foi processado e não pode ser cancelado.')
+        return redirect('/adotar/meus_pedidos/')
+
+    pedido.delete()
+    messages.add_message(request, constants.SUCCESS, 'Pedido de adoção cancelado com sucesso.')
+    return redirect('/adotar/meus_pedidos/')
+
+@login_required
+def limpar_historico(request):
+    if request.method == "POST":
+
+        pedidos_concluidos = Pedido_Adocao.objects.filter(adotante=request.user).filter(
+            status_pedido__in=['AP', 'RE']
+        )
+        pedidos_concluidos.delete()
+        messages.add_message(request, constants.SUCCESS, 'Histórico de pedidos limpo com sucesso.')
+        return redirect('meus_pedidos')
+    else:
+        return redirect('meus_pedidos')

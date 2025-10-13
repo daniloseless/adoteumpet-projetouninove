@@ -1,0 +1,82 @@
+{% extends 'pagina_base.html' %}
+{% load static %}
+
+{% block title %}
+<title>Meus Pedidos de Adoção</title>
+{% endblock %}
+
+{% block css_personalizado %}
+<link rel="stylesheet" href="{% static 'css/meus_pedidos.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="content-card">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2 class="card-title mb-0">Meus Pedidos de Adoção</h2>
+
+                <form action="{% url 'limpar_historico' %}" method="POST">
+                {% csrf_token %}
+                    <button type="submit" class="btn-clear-history"><i class="bi bi-trash"></i> Limpar Histórico
+                    </button>
+                </form>
+        </div>
+        <hr>
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{message.tags}} mt-3">
+                    {{message}}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Pet</th>
+                        <th>Data da Solicitação</th>
+                        <th>Status</th>
+                        <th>Ação</th> </tr>
+                </thead>
+                <tbody>
+                    {% for pedido in pedidos %}
+                        <tr>
+                            <td>
+                                <div class="d-flex align-items-center">
+                                    <img src="{{ pedido.pet.foto.url }}" class="pet-photo me-3">
+                                    <span class="fw-bold">{{ pedido.pet.nome }}</span>
+                                </div>
+                            </td>
+                            <td>{{ pedido.data_solicitacao|date:"d/m/Y H:i" }}</td>
+                            <td>
+                                {% if pedido.status_pedido == "AG" %}
+                                    <span class="badge rounded-pill text-bg-warning">Aguardando</span>
+                                {% elif pedido.status_pedido == "AP" %}
+                                    <span class="badge rounded-pill text-bg-success">Aprovado</span>
+                                {% elif pedido.status_pedido == "RE" %}
+                                    <span class="badge rounded-pill text-bg-danger">Recusado</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                {% if pedido.status_pedido == "AG" %}
+                                    <a href="{% url 'cancelar_pedido' pedido.id %}" class="btn-cancel">Cancelar</a>
+                                {% endif %}
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="4" class="text-center p-5">
+                                <h4 class="fw-bold">Você ainda não fez nenhum pedido de adoção.</h4>
+                                <p class="text-muted">Que tal encontrar um novo amigo?</p>
+                                <a href="{% url 'listar_pets' %}" class="btn btn-primary mt-2">Ver Pets para Adoção</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

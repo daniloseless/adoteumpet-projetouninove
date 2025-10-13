@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, HttpResponse, redirect, get_object_or_404 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -22,7 +22,7 @@ def cadastrar_pet(request):
             pet.usuario = request.user
             pet.save()
             messages.add_message(request, constants.SUCCESS, 'Pet cadastrado com sucesso!')
-            return render(request, 'cadastrar_pets.html')
+            return redirect('seus_pets') 
         else:
             messages.add_message(request, constants.ERROR, 'Não foi possivel cadastrar, verifique os dados')
             return render(request, 'cadastrar_pets.html', {'form':form})
@@ -37,9 +37,8 @@ def seus_pets(request):
 
 @login_required
 def detalhar_pet(request, id):
-    if request.method == 'GET':
-        pets = Pet.objects.filter(id=id)
-        return render(request, 'detalhar_pet.html', {'pets': pets})
+    pet = get_object_or_404(Pet, id=id)
+    return render(request, 'detalhar_pet.html', {'pet': pet})
     
 
 @login_required
@@ -79,3 +78,26 @@ def processar_pedido(request, id):
     pedido.save()
 
     return redirect('/adotar')
+
+@login_required
+def editar_pet(request, id):
+    pet = get_object_or_404(Pet, id=id)
+
+    if pet.usuario != request.user:
+        messages.add_message(request, constants.ERROR, 'Você não tem permissão para editar este pet.')
+        return redirect('/divulgar/seus_pets/')
+
+    if request.method == "GET":
+
+        form = CadastrarPet(instance=pet)
+        return render(request, 'editar_pet.html', {'form': form, 'pet': pet})
+    
+    elif request.method == "POST":
+
+        form = CadastrarPet(request.POST, request.FILES, instance=pet)
+        if form.is_valid():
+            form.save()
+            messages.add_message(request, constants.SUCCESS, 'Anúncio atualizado com sucesso!')
+            return redirect('detalhar_pet', id=pet.id)
+        else:
+            return render(request, 'editar_pet.html', {'form': form, 'pet': pet})

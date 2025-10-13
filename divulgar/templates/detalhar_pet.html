@@ -2,75 +2,119 @@
 {% load static %}
 
 {% block title %}
-<title>Detalhar Pet</title>
+<title>Detalhes de {{ pet.nome }}</title>
 {% endblock %}
 
-{% block css_personalizado%}
-<link rel="stylesheet" href="{% static 'css/detalhar_pet.css'%}">
+{% block css_personalizado %}
+<link rel="stylesheet" href="{% static 'css/detalhar_pet.css' %}">
 {% endblock %}
-
 
 {% block content %}
-<div class="container-fluid">
-    <div class="row">
-        {%for pet in pets %}
-        <div style="padding:60px" class="col-md">
-            <h3 class="font-vinho">Informações do pet</h3>
-            <div class="row">
-                <div class="col-md-3">
-                    <img width="100%" src="{{pet.foto.url}}">
-                </div>
-                <div class="col-md-9">
-                    <span class="span-bold">Nome:</span>
-                    <p>{{pet.nome}}</p>
-                    <div style="width:40%">
-                        <span class="badge bg-info">{{pet.tag1}}</span>
-                        <span class="badge bg-info">{{pet.tag2}}</span>
-                        <span class="badge bg-info">{{pet.tag3}}</span>
-                        <span class="badge bg-info">{{pet.tag4}}</span>
-                    </div>
-                </div>
-            </div>  
-            <br>
-            <div class="row">
-                <div class="col-md-5"> 
-                    <span class="span-bold">Descrição</span>
-                    <p>{{pet.descricao}}</p>
-                    
-                </div>
-
-                <div class="col-md-7">
+<div class="container my-5">
+    <div class="pet-detail-card">
+        <div class="row g-5">
+            <div class="col-lg-5">
+                <div class="pet-image-container">
+                    <img src="{{ pet.foto.url }}" alt="Foto de {{ pet.nome }}">
                 </div>
             </div>
-            <hr>
 
-            <div class="row">
-                <h3 class="font-vinho">Informações residenciais</h3>
-                <div class="col-md">
-                    <div class="row">
+            <div class="col-lg-7">
+                <h1 class="pet-name">{{ pet.nome }}</h1>
+                
+                <div class="pet-tags justify-content-center justify-content-lg-start">
+                   {% if pet.tag1 %}
+                    {% with tag=pet.tag1 %}
+            <span class="tag 
+                {% if tag == 'Vacinado' or tag == 'Castrado' or tag == 'Hipoalergênico' %}tag-health{% endif %}
+                {% if tag == 'Dócil' or tag == 'Carinhoso' or tag == 'Manso' or tag == 'Protetor' or tag == 'Agitado' or tag == 'Adestrado' or tag == 'Bravo' %}tag-behavior{% endif %}
+                {% if tag == 'Pelagem Longa' or tag == 'Especial' or tag == 'Resgatado' or tag == 'Pelagem Curta' %}tag-physical{% endif %}">
+                
+                {% include 'partials/tag_icon.html' %}
+                {{ tag }}
+            </span>
+            {% endwith %}
+            {% endif %}
 
-                        <div class="col-md">
-                            <span class="span-bold">Cidade</span>
-                            <p>{{pet.cidade}}</p>
-                        </div>
-                    </div>
-                    <span class="span-bold">Telefone para contato</span>
-                    <p>{{pet.telefone}}</p>
-                    <br>
-                    <a href="{% url 'solicitar_adocao' pet.id %}" class="btn btn-success btn-lg">SOLICITAR ADOÇÃO</a>
-                    
-                </div>
+            {% if pet.tag2 %}
+                {% with tag=pet.tag2 %}
+                    <span class="tag 
+                     {% if tag == 'Vacinado' or tag == 'Castrado' or tag == 'Hipoalergênico' %}tag-health{% endif %}
+                     {% if tag == 'Dócil' or tag == 'Carinhoso' or tag == 'Manso' or tag == 'Protetor' or tag == 'Agitado' or tag == 'Adestrado' or tag == 'Bravo' %}tag-behavior{% endif %}
+                    {% if tag == 'Pelagem Longa' or tag == 'Especial' or tag == 'Resgatado' or tag == 'Pelagem Curta' %}tag-physical{% endif %}">
+                
+                {% include 'partials/tag_icon.html' %}
+                {{ tag }}
+            </span>
+            {% endwith %}
+            {% endif %}
 
-                <div class="col-md">
-                </div>
-            </div>
+            {% if pet.tag3 %}
+            {% with tag=pet.tag3 %}
+                <span class="tag 
+                    {% if tag == 'Vacinado' or tag == 'Castrado' or tag == 'Hipoalergênico' %}tag-health{% endif %}
+                    {% if tag == 'Dócil' or tag == 'Carinhoso' or tag == 'Manso' or tag == 'Protetor' or tag == 'Agitado' or tag == 'Adestrado' or tag == 'Bravo' %}tag-behavior{% endif %}
+                    {% if tag == 'Pelagem Longa' or tag == 'Especial' or tag == 'Resgatado' or tag == 'Pelagem Curta' %}tag-physical{% endif %}">
+                
+                    {% include 'partials/tag_icon.html' %}
+                    {{ tag }}
+            </span>
+            {% endwith %}
+            {% endif %}
+    
+            {% if pet.tag4 %}
+            {% with tag=pet.tag4 %}
+                <span class="tag 
+                    {% if tag == 'Vacinado' or tag == 'Castrado' or tag == 'Hipoalergênico' %}tag-health{% endif %}
+                    {% if tag == 'Dócil' or tag == 'Carinhoso' or tag == 'Manso' or tag == 'Protetor' or tag == 'Agitado' or tag == 'Adestrado' or tag == 'Bravo' %}tag-behavior{% endif %}
+                    {% if tag == 'Pelagem Longa' or tag == 'Especial' or tag == 'Resgatado' or tag == 'Pelagem Curta' %}tag-physical{% endif %}">
+                
+                    {% include 'partials/tag_icon.html' %}
+                    {{ tag }}
+                </span>
+            {% endwith %}
+            {% endif %}
         </div>
 
-    </div>
+                <div class="info-section mb-4">
+                    <h5>Sobre mim</h5>
+                    <p>{{ pet.descricao }}</p>
+                </div>
 
-    {% endfor %}
+                <div class="info-section">
+                    <h5>Informações para Adoção</h5>
+                    <p class="mb-2">
+                        <span class="info-label">Localização:</span> {{ pet.cidade }}
+                    </p>
+                    <p class="mb-2">
+                        <span class="info-label">Responsável:</span> {{ pet.usuario.username }}
+                    </p>
+                    <p>
+                        <span class="info-label">Contato do doador:</span> {{ pet.telefone }}
+                    </p>
+                </div>
+                <div class="mt-4">
+                    {% if request.user == pet.usuario %}
+                    <div class="d-flex align-items-center gap-3">
+                        <span class="owner-badge">
+                            <i class="bi bi-person-check-fill"></i> Este pet é seu
+                        </span>
+                        <a href="{% url 'editar_pet' pet.id %}" class="btn-edit"> <i class="bi bi-pencil-fill"></i> EDITAR ANÚNCIO</a>
+                    </div>
+                {% else %}    
+                {% if pet.status == 'Para adoção' %}
+                    <a href="{% url 'solicitar_adocao' pet.id %}" class="btn-adopt">
+                        <i class="bi bi-heart-fill"></i> QUERO ADOTAR
+                    </a>
+                {% else %}
+                    <div class="alert alert-success">
+                        <h5 class="alert-heading fw-bold">Oba!</h5>
+                        <p class="mb-0">Este pet já encontrou uma família feliz!</p>
+                    </div>
+                {% endif %}
+                {% endif %}
+            </div>
+        </div>
+    </div>
 </div>
 {% endblock %}
-
-
-        

@@ -1,0 +1,100 @@
+/* static/css/base.css */
+
+body {
+    font-family: 'Nunito', sans-serif;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+}
+
+.layout-wrapper {
+    min-height: 100vh;
+}
+
+main {
+  height: 100vh;
+  height: -webkit-fill-available;
+  max-height: 100vh;
+  overflow-x: auto;
+  overflow-y: scroll;
+}
+
+/* --- SIDEBAR --- */
+.sidebar {
+    width: 280px;
+    background-color: #000072; /* Nosso azul principal */
+}
+
+.sidebar .nav-link {
+    font-size: 1rem;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.sidebar .nav-link .bi {
+    margin-right: 0.75rem;
+    font-size: 1.25rem;
+}
+
+.sidebar .nav-link:hover {
+    color: #fff;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar .nav-link.active {
+    color: #fff;
+    background-color: #F5A623 !important; /* Laranja de destaque */
+}
+
+.dropdown-toggle {
+    outline: 0;
+}
+
+.btn-custom-accent {
+    background-color: #F5A623; /* Laranja do logo */
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+    width: 100%;
+    margin-top: 20px;
+}
+
+.btn-custom-accent:hover {
+    background-color: #db911c; /* Um laranja um pouco mais escuro */
+    color: white;
+}
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 991.98px) {
+  .sidebar {
+    /* Transforma o sidebar em Offcanvas */
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1050;
+    transform: translateX(-100%);
+    transition: transform .3s ease-in-out;
+  }
+  
+  .sidebar.show {
+    transform: translateX(0);
+  }
+
+  .main-content {
+      /* O conteúdo principal ocupa tudo */
+      width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+    .mobile-header {
+        display: none !important; /* Garante que o header mobile não apareça */
+    }
+}
