@@ -1,45 +1,125 @@
-.bg-side{
-    background-color: #42008c;
+/* static/css/style.css */
+
+body {
+    font-family: 'Nunito', sans-serif;
+    background-color: #f0f2f5; /* Um fundo neutro e suave */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+.auth-card {
+    display: flex;
+    width: 100%;
+    max-width: 900px;
+    min-height: 600px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    overflow: hidden; /* Garante que as colunas fiquem dentro das bordas arredondadas */
+}
+
+
+.branding-section {
+    background-color: #000072;
     color: white;
-    height: 190vh;
-    
-
-}
-.header{
-    border-bottom: 1px solid white;
-    padding: 20px;
-}
-
-.body-form{
-    padding: 20px;
-}
-
-.font-logo{
-    margin-left: 10px;
-    font-size: 40px;
-    
-}
-
-.btn-custom-primary{
-    background-color: #3D7B80;
-    border: none;
-    box-shadow: 2px 2px 5px 1px black;
-    color: white;
-    font-size: 20px;
-    padding: 5px 20px 5px 20px;
-    border-radius: 10px;
-    margin-top: 20px;
-
-}
-
-.link-float{
-
-    text-decoration: none;
-    float: right;
-    margin: 20px;
-}
-
-.side-logo{
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
     text-align: center;
-    margin-top: 60px;    
+    width: 45%;
+}
+
+.branding-section img {
+    width: 120px;
+    margin-bottom: 20px;
+}
+
+.branding-section h1 {
+    font-weight: 700;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
+}
+
+.branding-section p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+}
+
+/* --- COLUNA DA ESQUERDA (FORMULÁRIO) --- */
+.form-section {
+    padding: 50px;
+    width: 55%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.form-section h2 {
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.form-section p {
+    color: #666;
+    margin-bottom: 30px;
+}
+
+.form-label {
+    font-weight: 700;
+    color: #555;
+}
+
+/* Link para a outra página (ex: "Cadastre-se") */
+.link-auth {
+    display: block;
+    text-align: center;
+    margin-top: 20px;
+    color: #000072;
+    font-weight: 700;
+    text-decoration: none;
+}
+
+.link-auth:hover {
+    text-decoration: underline;
+}
+
+.btn-custom-accent {
+    background-color: #F5A623; /* Laranja do logo */
+    border: none;
+    color: white;
+    font-weight: 700;
+    padding: 12px 20px;
+    border-radius: 8px;
+    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+    margin-top: 20px;
+}
+
+.btn-custom-accent:hover {
+    background-color: #db911c; /* Um laranja um pouco mais escuro */
+    color: white;
+}
+
+
+/* --- RESPONSIVIDADE --- */
+@media (max-width: 768px) {
+    .auth-card {
+        flex-direction: column;
+        min-height: auto;
+        max-width: 400px;
+        margin: 20px;
+    }
+
+    .branding-section,
+    .form-section {
+        width: 100%;
+    }
+
+    .branding-section {
+        padding: 30px;
+    }
 }

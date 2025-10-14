@@ -1,31 +1,120 @@
-.btn-custom-secondary{
-    background-color: #762D77;
+/* static/css/listar_pets.css */
+
+/* --- SEÇÃO DE FILTROS --- */
+.filter-card {
+    background-color: #ffffff;
+    padding: 1.5rem 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px
+ 12px rgba(0, 0, 0, 0.05);
+    margin-bottom: 2rem;
+}
+
+.filter-card .form-control,
+.filter-card .form-select {
+    border-radius: 8px !important;
+    border: 1px solid #ced4da !important;
+    padding: 10px 15px !important;
+}
+
+.filter-card .form-control:focus,
+.filter-card .form-select:focus {
+    border-color: #ffff !important;
+    box-shadow: 0 0 0 0.25rem rgba(74, 144, 226, 0.25) !important;
+}
+
+/* Botões de filtro */
+.btn-filter {
+    background-color: #000072; /* Azul principal */
+    color: white;
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 8px;
     border: none;
-    box-shadow: 2px 2px 5px 1px rgb(108, 108, 108);
+    transition: background-color 0.3s ease;
+}
+
+.btn-filter:hover {
+    background-color: #0808acfd;
+}
+
+.btn-clear {
+    background-color: #6c757d; /* Cinza */
     color: white;
-    font-size: 20px;
-    padding: 5px 20px 5px 20px;
-    border-radius: 10px;
-
+    font-weight: 700;
+    padding: 10px 25px;
+    border-radius: 8px;
+    border: none;
+    transition: background-color 0.3s ease;
 }
 
-.span-bold{
-    font-weight: bold;
-    font-size: 30px;
+.btn-clear:hover {
+    background-color: #b2ddfa;
 }
 
-.span-bold2{
-    font-weight: bold;
-    font-size: 20px;
+
+/* --- GALERIA DE PETS --- */
+.pet-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    overflow: hidden; /* Garante que a imagem não ultrapasse as bordas arredondadas */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+    color: inherit;
+    display: block; /* Faz o link <a> se comportar como um bloco */
 }
 
-.badge-lg{
-    font-size: 20px;
-    margin-top: 10px;
+.pet-card:hover {
+    transform: translateY(-5px); /* Efeito de elevação */
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+    color: inherit;
 }
 
-.bg-side-plataforma{
-    background-color: #42008c;
-    color: white;
-    
+.pet-card-img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover; /* Garante que a imagem cubra o espaço sem distorcer */
+}
+
+.pet-card-body {
+    padding: 1rem 1.25rem;
+}
+
+.pet-card-title {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #333;
+    margin-bottom: 0.25rem;
+}
+
+.pet-card-info {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+.pet-card-info .bi {
+    margin-right: 0.3rem;
+}
+
+.pet-card-footer {
+    padding: 0 1.25rem 1rem;
+}
+
+/* Estilos para as tags de status */
+.status-badge {
+    padding: 0.4em 0.8em;
+    font-weight: 700;
+    border-radius: 50px; /* Deixa a tag bem arredondada */
+    font-size: 0.8rem;
+}
+
+.status-adocao {
+    background-color: #d1e7dd; /* Verde claro */
+    color: #0f5132;
+}
+
+.status-adotado {
+    background-color: #e2e3e5; /* Cinza claro */
+    color: #41464b;
 }

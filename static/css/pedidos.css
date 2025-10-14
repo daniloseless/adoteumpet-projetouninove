@@ -1,0 +1,97 @@
+/* static/css/pedidos.css */
+
+.card-title {
+    font-weight: 700;
+    color: #333;
+}
+
+.request-card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.pet-info {
+    background-color: #f8f9fa;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e9ecef;
+}
+
+.pet-photo-sm {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    margin-right: 1rem;
+}
+
+.pet-name {
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: #333;
+}
+
+.adopter-info {
+    padding: 1.5rem;
+    flex-grow: 1; /* Faz esta seção crescer para preencher o espaço */
+}
+
+.adopter-info .info-label {
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #6c757d;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.25rem;
+}
+
+.adopter-info .info-data {
+    font-size: 1.1rem;
+    color: #212529;
+    word-break: break-all; /* Evita que emails longos quebrem o layout */
+}
+
+.action-buttons {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Divide o espaço em duas colunas iguais */
+    gap: 1rem;
+    padding: 0 1.5rem 1.5rem;
+}
+
+.btn-approve {
+    background-color: #198754;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-approve:hover {
+    background-color: #157347;
+    color: white;
+}
+
+.btn-refuse {
+    background-color: #dc3545;
+    color: white;
+    font-weight: 700;
+    border: none;
+    border-radius: 8px;
+    padding: 10px;
+    transition: background-color 0.3s ease;
+    text-decoration: none;
+    text-align: center;
+}
+.btn-refuse:hover {
+    background-color: #b02a37;
+    color: white;
+}

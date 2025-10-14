@@ -2,87 +2,84 @@
 {% load static %}
 
 {% block title %}
-<title>Listar Pets</title>
+<title>Adotar um Pet</title>
 {% endblock %}
 
 {% block css_personalizado%}
 <link rel="stylesheet" href="{% static 'css/listar_pets.css'%}">
 {% endblock %}
 
-
 {% block content %}
-                <div class="col-md rounded shadow px-2">
-                    <div class="wrapper">
-                        <div class="box width80">
-                            {% if messages %}
-                                <br>
-                                {% for message in messages %}
-                                    <div class="alert {{message.tags}}">
-                                        {{message}}
-                                    </div>
-                                {% endfor %}
-                            {% endif %}
-                            <h3 class="font-vinho">Todos os Pets</h3>
-                            <hr>
-                            <form action="{% url 'listar_pets' %}" method="get">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <input type="text" placeholder="Cidade..." value="" name="cidade" class="form-control">
-                                    </div>
+<div class="container-fluid">
+    <h2 class="mb-4 fw-bold">Todos os Pets</h2>
 
-                                    <div class="col-md-4">
-                                        <select class="form-select" name="raca">
-                                            <option value=""></option>
-                                           {% for raca in racas %}
-                                                <option value="{{raca.id}}">{{raca}}</option>
-                                           {% endfor %}
-                                        </select>
-                                    </div>
-                                    <div class="col-md-2 d-flex">
-                                        <input type="submit" class="btn-custom-secondary" value="FILTRAR">
-                                        <a href="/adotar" class="btn-custom-secondary mx-2 text-decoration-none">LIMPAR</a>
-                                    </div>
-                                </div>
-                            </form>
-
-                             <table class="tabela" cellpadding="20">
-                                <tr>
-                                    <th>Foto</th>
-                                    <th>Nome</th>
-                                    <th>Raça</th>
-                                    <th>Status</th>
-                                    <th>Cidade</th>
-                                </tr>
-                                {% for pet in pets%}
-                                    <tr class="tabela-linha">
-                                        <td width="20%">
-                                            <a href="{% url 'detalhar_pet' pet.id %}"><img width="40%" src="{{pet.foto.url}}"></a>
-                                        </td>
-                                        <td>
-                                            {{pet.nome}}
-                                        </td>
-                                        <td>
-                                            {{pet.raca}}
-                                            
-                                        </td>
-                                        <td>
-                                            {% if pet.status == "Para adoção" %}
-                                                <span class="badge text-bg-primary">Para adoção</span>
-                                            {% elif pet.status == "Adotado" %}
-                                                <span class="badge text-bg-success">Adotado</span>
-                                            {% endif%}
-
-                                           
-                                            
-                                        </td>
-                                        <td>
-                                            {{pet.cidade}}
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                             
-                            </table>
-                        </div>
-                    </div>
+    <div class="filter-card">
+        <form action="{% url 'listar_pets' %}" method="get">
+            <div class="row align-items-end">
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="cidade" class="form-label fw-bold">Cidade</label>
+                    <input type="text" placeholder="Digite a cidade..." value="{{ request.GET.cidade }}" name="cidade" id="cidade" class="form-control">
                 </div>
+
+                <div class="col-md-4 mb-3 mb-md-0">
+                    <label for="raca" class="form-label fw-bold">Raça</label>
+                    <select class="form-select" name="raca" id="raca">
+                        <option value="">Todas as raças</option>
+                       {% for raca in racas %}
+                            <option value="{{raca.id}}" {% if request.GET.raca == raca.id|stringformat:"s" %}selected{% endif %}>{{raca}}</option>
+                       {% endfor %}
+                    </select>
+                </div>
+                <div class="col-md-4 d-flex">
+                    <button type="submit" class="btn-filter me-2">FILTRAR</button>
+                    <a href="{% url 'listar_pets' %}" class="btn-clear text-decoration-none">LIMPAR</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert {{message.tags}}">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row g-4">
+        {% for pet in pets %}
+            <div class="col-xl-3 col-lg-4 col-md-6">
+                <a href="{% url 'detalhar_pet' pet.id %}" class="pet-card">
+                    <img src="{{pet.foto.url}}" class="pet-card-img" alt="Foto de {{ pet.nome }}">
+                    <div class="pet-card-body">
+                        <h5 class="pet-card-title">{{ pet.nome }}</h5>
+                        <p class="pet-card-info mb-2">
+                            <i class="bi bi-tag-fill"></i>
+                            {{ pet.raca }}
+                        </p>
+                        <p class="pet-card-info">
+                            <i class="bi bi-geo-alt-fill"></i>
+                            {{ pet.cidade }}
+                        </p>
+                    </div>
+                    <div class="pet-card-footer">
+                        {% if pet.status == "Para adoção" %}
+                            <span class="status-badge status-adocao">Para adoção</span>
+                        {% else %}
+                            <span class="status-badge status-adotado">Adotado</span>
+                        {% endif%}
+                    </div>
+                </a>
+            </div>
+        {% empty %}
+            <div class="col-12">
+                <div class="text-center p-5 bg-white rounded-3 shadow-sm">
+                    <h4 class="fw-bold">Nenhum pet encontrado</h4>
+                    <p class="text-muted">Tente ajustar os filtros ou volte mais tarde!</p>
+                    <a href="{% url 'listar_pets' %}" class="btn-clear text-decoration-none mt-2">LIMPAR FILTROS</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
 {% endblock %}

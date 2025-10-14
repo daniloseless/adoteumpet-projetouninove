@@ -5,61 +5,66 @@
 <title>Seus Pets</title>
 {% endblock %}
 
-{% block css_personalizado%}
-<link rel="stylesheet" href="{% static 'css/seus_pets.css'%}">
+{% block css_personalizado %}
+<link rel="stylesheet" href="{% static 'css/seus_pets.css' %}">
 {% endblock %}
 
-
 {% block content %}
-        <div class="container-fluid rounded shadow px-2 py-2">
-            <div class="row">
-                <div class="col-md">
-                    <div class="wrapper">
-                        <div class="box width80">
-                                {% for message in messages %}
-                                    <div class="alert {{message.tags}}">
-                                        {{message}}
-                                    </div>
-                                {% endfor %}
-                            <h3 class="font-vinho">Seus Pets</h3>
-                            <hr>
+<div class="container-fluid">
+    <div class="content-card">
+        <h2 class="card-title">Seus Pets</h2>
+        <hr>
 
-                             <table class="tabela" cellpadding="20">
-                                <tr>
-                                    <th>Foto</th>
-                                    <th>Nome</th>
-                                    <th>Raça</th>
-                                    <th>Status</th>
-                                    <th>Remover</th>
-                                </tr>
-                                {% for pet in pets %}
-                                    <tr class="tabela-linha">
-                                       
-                                        <td width="20%">
-                                           <a href="{% url 'detalhar_pet' pet.id %}"><img width="40%" src="{{pet.foto.url}}"></a> 
-                                        </td>
-                                        <td>
-                                            {{pet.nome}}
-                                        </td>
-                                        <td>
-                                            {{pet.raca}}
-                                            
-                                        </td>
-                                        <td>
-                                            {{pet.status}}
-                                        </td>
-                                        <td>
-                                            <a href="{% url 'remover_pet' pet.id %}" class="btn btn-danger">REMOVER</a>
-                                        </td>
-                                    </tr>
-                                {% endfor %}
-                            
-                                
-                            </table>
-                        </div>
-                    </div>
-                </div>
-
+        {% for message in messages %}
+            <div class="alert {{ message.tags }} mt-3">
+                {{ message }}
             </div>
+        {% endfor %}
+
+        <div class="table-responsive">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Foto</th>
+                        <th>Nome</th>
+                        <th>Raça</th>
+                        <th>Status</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for pet in pets %}
+                        <tr>
+                            <td>
+                               <a href="{% url 'detalhar_pet' pet.id %}"><img src="{{ pet.foto.url }}" class="pet-photo"></a> 
+                            </td>
+                            <td>{{ pet.nome }}</td>
+                            <td>{{ pet.raca }}</td>
+                            <td>
+                                {% if pet.status == "Para adoção" %}
+                                    <span class="badge rounded-pill text-bg-primary">{{ pet.status }}</span>
+                                {% else %}
+                                    <span class="badge rounded-pill text-bg-success">{{ pet.status }}</span>
+                                {% endif %}
+                            </td>
+                            <td>
+                                <a href="{% url 'remover_pet' pet.id %}" class="btn-remove">
+                                    <i class="bi bi-trash-fill"></i> Remover
+                                </a>
+                            </td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5" class="text-center p-5">
+                                <h4 class="fw-bold">Você ainda não cadastrou nenhum pet.</h4>
+                                <p class="text-muted">Que tal divulgar um amiguinho para adoção?</p>
+                                <a href="{% url 'cadastrar_pet' %}" class="btn btn-primary mt-2">Cadastrar primeiro pet</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
+    </div>
+</div>
 {% endblock %}

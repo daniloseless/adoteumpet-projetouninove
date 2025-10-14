@@ -1,4 +1,4 @@
-/* static/css/seus_pets.css */
+/* static/css/meus_pedidos.css */
 
 .content-card {
     background-color: #ffffff;
@@ -12,14 +12,12 @@
     color: #333;
 }
 
-/* --- ESTILO DA TABELA --- */
 .table {
     margin-top: 1.5rem;
-    border-collapse: separate; /* Permite bordas arredondadas nas células */
-    border-spacing: 0 8px; /* Espaçamento vertical entre as linhas */
+    border-collapse: separate;
+    border-spacing: 0 8px;
 }
 
-/* Remove a borda padrão do cabeçalho */
 .table > thead {
     border-color: transparent;
 }
@@ -36,13 +34,8 @@
 }
 
 .table tbody tr {
-    background-color: #f8f9fa; /* Fundo cinza claro para as linhas */
+    background-color: #f8f9fa;
     border-radius: 8px;
-    transition: background-color 0.2s ease;
-}
-
-.table tbody tr:hover {
-    background-color: #f1f3f5;
 }
 
 .table td {
@@ -51,7 +44,6 @@
     padding: 1rem 1.5rem;
 }
 
-/* Cantos arredondados para a primeira e última célula de cada linha */
 .table td:first-child {
     border-top-left-radius: 8px;
     border-bottom-left-radius: 8px;
@@ -65,28 +57,34 @@
     width: 60px;
     height: 60px;
     object-fit: cover;
-    border-radius: 50%; /* Foto circular */
+    border-radius: 50%;
 }
 
-/* Botão de remoção */
-.btn-remove {
-    background-color: #e74c3c;
+.btn-cancel {
+    background-color: #6c757d;
     color: white;
-    font-weight: 700;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.2s ease;
+}
+
+.btn-cancel:hover {
+    background-color: #5a6268;
+    color: white;
+}
+
+.btn-clear-history {
+    background-color: #dc3545; 
+    color: white;
     padding: 8px 15px;
+    font-size: 0.9rem;
     border-radius: 8px;
     border: none;
-    transition: background-color 0.3s ease;
-    text-decoration: none;
-    display: inline-flex;
-    align-items: center;
+    transition: background-color 0.2s ease;
 }
 
-.btn-remove:hover {
-    background-color: #c0392b;
-    color: white;
-}
-
-.btn-remove .bi {
-    margin-right: 0.5rem;
+.btn-clear-history:hover {
+    background-color: #b02a37;
 }
