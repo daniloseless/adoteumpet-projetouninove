@@ -1,11 +1,11 @@
-
 from pathlib import Path
 import os
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = 'django-insecure-_lgbj9!m=1!6*#7qa$dra%eb^$57u0dr2db0u6s0w8+fex!&gw' 
 
-SECRET_KEY = 'django-insecure-_lgbj9!m=1!6*#7qa$dra%eb^$57u0dr2db0u6s0w8+fex!&gw'
 
 DEBUG = 'RENDER' not in os.environ
 
@@ -15,13 +15,14 @@ RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
 if RENDER_EXTERNAL_HOSTNAME:
     ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
+
 LOGIN_URL = '/auth/login/'
 LOGIN_REDIRECT_URL = '/divulgar/' 
 
 
-
 INSTALLED_APPS = [
-'django.contrib.admin',
+
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -29,7 +30,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
-    'whitenoise.runserver_nostatic',
     'adotar',
     'divulgar',
     'usuarios',
@@ -37,7 +37,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', # ADICIONADO
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -66,8 +66,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'adoteumpet_core.wsgi.application'
 
+
 import dj_database_url
 
+# Database
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -86,28 +88,24 @@ if DATABASE_URL:
 
 AUTH_PASSWORD_VALIDATORS = []
 
+
 LANGUAGE_CODE = 'pt-br'
-
 TIME_ZONE = 'America/Porto_Velho'
-
 USE_I18N = True
-
 USE_TZ = True
 
 
-
-
 STATIC_URL = '/static/'
-
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
+
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
 CLOUDINARY_STORAGE = {
     'CLOUD_NAME': os.environ.get('CLOUDINARY_CLOUD_NAME'),
     'API_KEY': os.environ.get('CLOUDINARY_API_KEY'),
@@ -116,8 +114,8 @@ CLOUDINARY_STORAGE = {
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
-
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
 
 from django.contrib.messages import constants
 
@@ -128,13 +126,3 @@ MESSAGE_TAGS = {
     constants.INFO: 'alert-info',
     constants.WARNING: 'alert-warning',
 }
-
-INSTALLED_APPS = [
-    #... apps existentes
-    'adotar',
-    'divulgar',
-    'usuarios',
-    # Adicione estes:
-    'cloudinary_storage',
-    'cloudinary',
-]
