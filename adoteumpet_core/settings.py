@@ -21,12 +21,15 @@ LOGIN_REDIRECT_URL = '/divulgar/'
 
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
+    'whitenoise.runserver_nostatic',
     'adotar',
     'divulgar',
     'usuarios',
