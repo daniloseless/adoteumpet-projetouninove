@@ -1,7 +1,6 @@
 
 from pathlib import Path
 import os
-import dj_database_url
 from django.contrib.messages import constants
 
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -64,6 +63,8 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'adoteumpet_core.wsgi.application'
+
+import dj_database_url
 
 DATABASES = {
     'default': {
