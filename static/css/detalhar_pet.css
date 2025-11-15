@@ -1,7 +1,5 @@
-/* static/css/detalhar_pet.css */
-
 .pet-detail-card {
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 2.5rem;
     border-radius: 16px;
     box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
@@ -17,7 +15,7 @@
 .pet-name {
     font-weight: 700;
     font-size: 2.5rem;
-    color: #333;
+    color: var(--black);
 }
 
 .pet-tags {
@@ -29,8 +27,8 @@
 }
 
 .tag {
-    background-color: #e9ecef;
-    color: #495057;
+    background-color: var(--platinum);
+    color: var(--oxford-blue);
     padding: 0.5rem 1rem; 
     border-radius: 50px;
     font-size: 0.9rem; 
@@ -52,32 +50,32 @@
 }
 
 .tag-physical { 
-    background-color: #fff3cd;
+    background-color: #fce4ad; 
     color: #664d03;
 }
 
 .info-section h5 {
     font-weight: 700;
-    color: #555;
+    color: var(--oxford-blue);
     margin-bottom: 1rem;
-    border-bottom: 2px solid #F5A623; 
+    border-bottom: 2px solid var(--orange-web);
     padding-bottom: 0.5rem;
     display: inline-block;
 }
 
 .info-section p {
-    color: #666;
+    color: var(--oxford-blue);
     line-height: 1.6;
 }
 
 .info-label {
     font-weight: 700;
-    color: #333;
+    color: var(--black);
     font-size: 1.1rem;
 }
 
 .btn-adopt {
-    background-color: #198754; 
+    background-color: #198754;
     color: white;
     font-weight: 700;
     padding: 15px 30px;
@@ -101,8 +99,8 @@
 }
 
 .btn-edit {
-    background-color: #4A90E2; /* Nosso azul principal */
-    color: white;
+    background-color: var(--oxford-blue);
+    color: var(--white);
     font-weight: 700;
     padding: 15px 30px;
     border-radius: 8px;
@@ -116,8 +114,8 @@
 }
 
 .btn-edit:hover {
-    background-color: #3a7ac8;
-    color: white;
+    background-color: var(--oxford-blue-darker);
+    color: var(--white);
 }
 
 .btn-edit .bi {
@@ -125,8 +123,8 @@
 }
 
 .owner-badge {
-    background-color: #e9ecef;
-    color: #495057;
+    background-color: var(--platinum);
+    color: var(--oxford-blue);
     padding: 15px 30px;
     border-radius: 8px;
     font-weight: 700;
