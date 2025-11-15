@@ -1,12 +1,10 @@
-/* static/css/pedidos.css */
-
 .card-title {
     font-weight: 700;
-    color: #333;
+    color: var(--black);
 }
 
 .request-card {
-    background-color: #ffffff;
+    background-color: var(--white);
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
     overflow: hidden;
@@ -16,11 +14,11 @@
 }
 
 .pet-info {
-    background-color: #f8f9fa;
+    background-color: var(--white);
     padding: 1rem 1.5rem;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--platinum);
 }
 
 .pet-photo-sm {
@@ -34,32 +32,33 @@
 .pet-name {
     font-weight: 700;
     font-size: 1.25rem;
-    color: #333;
+    color: var(--black);
 }
 
 .adopter-info {
     padding: 1.5rem;
-    flex-grow: 1; /* Faz esta seção crescer para preencher o espaço */
+    flex-grow: 1;
 }
 
 .adopter-info .info-label {
     font-weight: 700;
     font-size: 0.8rem;
     text-transform: uppercase;
-    color: #6c757d;
+    color: var(--oxford-blue);
+    opacity: 0.7;
     letter-spacing: 0.5px;
     margin-bottom: 0.25rem;
 }
 
 .adopter-info .info-data {
     font-size: 1.1rem;
-    color: #212529;
-    word-break: break-all; /* Evita que emails longos quebrem o layout */
+    color: var(--oxford-blue);
+    word-break: break-all;
 }
 
 .action-buttons {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Divide o espaço em duas colunas iguais */
+    grid-template-columns: 1fr 1fr;
     gap: 1rem;
     padding: 0 1.5rem 1.5rem;
 }

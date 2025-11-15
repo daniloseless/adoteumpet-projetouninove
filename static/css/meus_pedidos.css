@@ -1,7 +1,5 @@
-/* static/css/meus_pedidos.css */
-
 .content-card {
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 2rem;
     border-radius: 12px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
@@ -9,7 +7,7 @@
 
 .card-title {
     font-weight: 700;
-    color: #333;
+    color: var(--black);
 }
 
 .table {
@@ -24,7 +22,8 @@
 
 .table th {
     border: none !important;
-    color: #6c757d;
+    color: var(--oxford-blue);
+    opacity: 0.7;
     font-weight: 700;
     text-transform: uppercase;
     font-size: 0.8rem;
@@ -34,7 +33,8 @@
 }
 
 .table tbody tr {
-    background-color: #f8f9fa;
+    background-color: var(--white);
+    border: 1px solid var(--platinum);
     border-radius: 8px;
 }
 
@@ -61,8 +61,8 @@
 }
 
 .btn-cancel {
-    background-color: #6c757d;
-    color: white;
+    background-color: var(--platinum);
+    color: var(--oxford-blue);
     padding: 5px 10px;
     font-size: 0.8rem;
     border-radius: 5px;
@@ -71,12 +71,12 @@
 }
 
 .btn-cancel:hover {
-    background-color: #5a6268;
-    color: white;
+    background-color: var(--platinum-darker);
+    color: var(--black);
 }
 
 .btn-clear-history {
-    background-color: #dc3545; 
+    background-color: #dc3545;
     color: white;
     padding: 8px 15px;
     font-size: 0.9rem;

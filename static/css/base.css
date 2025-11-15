@@ -1,4 +1,13 @@
-/* static/css/base.css */
+:root {
+  --black: #000000ff;
+  --oxford-blue: #14213dff;
+  --oxford-blue-darker: #0a1427;
+  --orange-web: #fca311ff;
+  --orange-web-darker: #e89400;
+  --platinum: #e5e5e5ff;
+  --platinum-darker: #d4d4d4;
+  --white: #ffffffff;
+}
 
 body {
     font-family: 'Nunito', sans-serif;
@@ -16,12 +25,12 @@ main {
   max-height: 100vh;
   overflow-x: auto;
   overflow-y: scroll;
+  background-color: var(--platinum);
 }
 
-/* --- SIDEBAR --- */
 .sidebar {
     width: 280px;
-    background-color: #000072; /* Nosso azul principal */
+    background-color: var(--oxford-blue);
 }
 
 .sidebar .nav-link {
@@ -40,13 +49,13 @@ main {
 }
 
 .sidebar .nav-link:hover {
-    color: #fff;
+    color: var(--white);
     background-color: rgba(255, 255, 255, 0.1);
 }
 
 .sidebar .nav-link.active {
-    color: #fff;
-    background-color: #F5A623 !important; /* Laranja de destaque */
+    color: var(--white);
+    background-color: var(--orange-web) !important;
 }
 
 .dropdown-toggle {
@@ -54,26 +63,24 @@ main {
 }
 
 .btn-custom-accent {
-    background-color: #F5A623; /* Laranja do logo */
+    background-color: var(--orange-web);
     border: none;
-    color: white;
+    color: var(--white);
     font-weight: 700;
     padding: 12px 20px;
     border-radius: 8px;
-    transition: background-color 0.3s ease; /* Efeito suave ao passar o mouse */
+    transition: background-color 0.3s ease;
     width: 100%;
     margin-top: 20px;
 }
 
 .btn-custom-accent:hover {
-    background-color: #db911c; /* Um laranja um pouco mais escuro */
-    color: white;
+    background-color: var(--orange-web-darker);
+    color: var(--white);
 }
 
-/* --- RESPONSIVIDADE --- */
 @media (max-width: 991.98px) {
   .sidebar {
-    /* Transforma o sidebar em Offcanvas */
     position: fixed;
     top: 0;
     bottom: 0;
@@ -88,13 +95,12 @@ main {
   }
 
   .main-content {
-      /* O conteúdo principal ocupa tudo */
       width: 100%;
   }
 }
 
 @media (min-width: 992px) {
     .mobile-header {
-        display: none !important; /* Garante que o header mobile não apareça */
+        display: none !important;
     }
 }
