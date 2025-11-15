@@ -1,7 +1,6 @@
 
 from pathlib import Path
 import os
-from django.contrib.messages import constants
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -116,6 +115,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+from django.contrib.messages import constants
 
 MESSAGE_TAGS = {
     constants.DEBUG: 'alert-primary', 
